@@ -21,7 +21,7 @@ function selectorUpload(selector, loader, catDescription) {
       });
     })
     .catch(function (error) {
-      onError();
+      handleError();
     })
     .finally(function () {
       toggleHiddenCompletely(selector, true);
@@ -54,13 +54,21 @@ function createMarkup(event, selector, loader, catDescription) {
         </div>`;
     })
     .catch(function (error) {
-      onError();
+      handleError();
     })
     .finally(function () {
       toggleHiddenCompletely(loader, false);
       toggleHiddenCompletely(selector, true);
       toggleHiddenCompletely(catDescription, true);
     });
+}
+
+function handleError() {
+  iziToast.error({
+    title: "🔻 Oops!",
+    message: "Something went wrong!",
+    position: "topCenter",
+  });
 }
 
 (() => {
