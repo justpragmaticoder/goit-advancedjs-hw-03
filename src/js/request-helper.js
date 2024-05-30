@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://api.thecatapi.com/v1";
 const BREEDS_API_ENDPOINT = `${BASE_URL}/breeds`;
 const IMAGES_API_ENDPOINT = `${BASE_URL}/images/search?`;
-const API_KEY_HEADER = 'x-api-key';
+const API_KEY_HEADER = "x-api-key";
 const BREEDS_CACHE_KEY = "cat_breeds";
 const CAT_BY_BREED_CACHE_KEY = "cat_by_breed";
 const CAT_API_KEY = process.env.CAT_API_KEY;
@@ -25,17 +25,16 @@ function fetchBreeds() {
 
   axios.defaults.headers.common[API_KEY_HEADER] = API_KEY;
 
-  return axios
-    .get(`${BREEDS_API_ENDPOINT}`)
-    .then((response) => {
-      localStorage.setItem(BREEDS_CACHE_KEY, JSON.stringify(response.data));
-      console.log("[fetchBreeds] response: ", response);
-      return response.data;
-    });
+  return axios.get(`${BREEDS_API_ENDPOINT}`).then((response) => {
+    localStorage.setItem(BREEDS_CACHE_KEY, JSON.stringify(response.data));
+    console.log("[fetchBreeds] response: ", response);
+    return response.data;
+  });
 }
 
 function fetchCatByBreed(breedId) {
-  const rawCachedCatByBreed = localStorage.getItem(CAT_BY_BREED_CACHE_KEY);
+  const cacheKey = `${CAT_BY_BREED_CACHE_KEY}_${breedId}`;
+  const rawCachedCatByBreed = localStorage.getItem(cacheKey);
 
   if (rawCachedCatByBreed) {
     const parsedData = JSON.parse(rawCachedCatByBreed);
@@ -48,10 +47,7 @@ function fetchCatByBreed(breedId) {
   return axios
     .get(`${IMAGES_API_ENDPOINT}breed_ids=${breedId}`)
     .then((response) => {
-      localStorage.setItem(
-        CAT_BY_BREED_CACHE_KEY,
-        JSON.stringify(response.data)
-      );
+      localStorage.setItem(cacheKey, JSON.stringify(response.data));
       console.log("[fetchCatByBreed] response: ", response);
       return response.data;
     });
