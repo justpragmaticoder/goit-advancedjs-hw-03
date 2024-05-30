@@ -4,6 +4,10 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import { fetchBreeds, fetchCatByBreed } from "./request-helper.js";
 
+const BREEDS_CACHE_KEY = 'cat_breeds';
+
+let simpleCache = {};
+
 function toggleHiddenCompletely(element, isVisible) {
   element.classList.toggle("is-hidden-compeletely", !isVisible);
 }
@@ -19,6 +23,8 @@ function selectorUpload(selector, loader, catDescription) {
       new SlimSelect({
         select: selector,
       });
+
+      localStorage.setItem(BREEDS_CACHE_KEY, breeds);
     })
     .catch(function (error) {
       handleError(error);
@@ -39,10 +45,13 @@ function createMarkup(event, selector, loader, catDescription) {
 
   fetchCatByBreed(breedId)
     .then(function (catData) {
+      console.log("catData: ", catData);
+
       if (catData.length === 0) {
         catDescription.innerHTML = ``;
+        return;
       }
-      const { url, breeds } = catData[0];
+      let { url, breeds } = catData[0];
 
       catDescription.innerHTML = `
         <img src="${url}" alt="${breeds[0].name}" width="400" loading="lazy" />
