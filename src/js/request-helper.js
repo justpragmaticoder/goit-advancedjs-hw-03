@@ -40,16 +40,11 @@ function fetchCatByBreed(breedId) {
   }
 
   return axios
-    .get(
-      `${
-        (IMAGES_API_ENDPOINT,
-        {
-          headers: {
-            API_KEY_HEADER: CAT_API_KEY,
-          },
-        })
-      }breed_ids=${breedId}`
-    )
+    .get(`${IMAGES_API_ENDPOINT}breed_ids=${breedId}`, {
+      headers: {
+        API_KEY_HEADER: CAT_API_KEY,
+      },
+    })
     .then((response) => {
       localStorage.setItem(
         CAT_BY_BREED_CACHE_KEY,
