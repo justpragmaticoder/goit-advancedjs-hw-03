@@ -7,7 +7,7 @@ const API_KEY_HEADER = "x-api-key";
 const BREEDS_CACHE_KEY = "cat_breeds";
 const CAT_BY_BREED_CACHE_KEY = "cat_by_breed";
 const CAT_API_KEY = process.env.CAT_API_KEY;
-/* I've tried to hide it on GitHub pages build, but have no success. Don't want to dive deeply into it. Sorry */
+/* I've tried to hide it behind GitHub pages build, but have no success. Don't want to dive deeply into it. Sorry */
 const DEFAULT_CAT_API_KEY =
   "live_bytNC2cujaqiVi4NMgtPCYmpdjwwzI4YqMM94fNkWsEQBwt71pQFtm3yT5u5YsHM";
 
