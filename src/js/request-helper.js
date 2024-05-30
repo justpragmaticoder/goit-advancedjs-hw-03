@@ -10,6 +10,7 @@ const CAT_API_KEY = process.env.CAT_API_KEY;
 /* I've tried to hide it behind GitHub pages build, but have no success. Don't want to dive deeply into it. Sorry */
 const DEFAULT_CAT_API_KEY =
   "live_bytNC2cujaqiVi4NMgtPCYmpdjwwzI4YqMM94fNkWsEQBwt71pQFtm3yT5u5YsHM";
+const API_KEY = CAT_API_KEY || DEFAULT_CAT_API_KEY;
 
 function fetchBreeds() {
   const rawCachedCatBreeds = localStorage.getItem(BREEDS_CACHE_KEY);
@@ -22,12 +23,10 @@ function fetchBreeds() {
 
   console.log("Does CAT_API_KEY exist: ", !!CAT_API_KEY);
 
-  const apiKey = CAT_API_KEY || DEFAULT_CAT_API_KEY;
-
   return axios
     .get(`${BREEDS_API_ENDPOINT}`, {
       headers: {
-        API_KEY_HEADER: apiKey,
+        API_KEY_HEADER: API_KEY,
       },
     })
     .then((response) => {
@@ -48,12 +47,10 @@ function fetchCatByBreed(breedId) {
 
   console.log("Does CAT_API_KEY exist: ", !!CAT_API_KEY);
 
-  const apiKey = CAT_API_KEY ?? DEFAULT_CAT_API_KEY;
-
   return axios
     .get(`${IMAGES_API_ENDPOINT}breed_ids=${breedId}`, {
       headers: {
-        API_KEY_HEADER: apiKey,
+        API_KEY_HEADER: API_KEY,
       },
     })
     .then((response) => {
