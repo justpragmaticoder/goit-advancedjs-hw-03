@@ -8,7 +8,7 @@ function toggleHiddenCompletely(element, isVisible) {
   element.classList.toggle("is-hidden-compeletely", !isVisible);
 }
 
-function selectorUpload(selector, loader, catDescription) {
+function uploadDataToSelectItem(selector, loader, catDescription) {
   fetchBreeds()
     .then(function (breeds) {
       selector.classList.remove("is-invisible");
@@ -82,5 +82,5 @@ function handleError(error) {
   selector.addEventListener("change", (event) =>
     createMarkup(event, selector, loader, catDescription)
   );
-  selectorUpload(selector, loader, catDescription);
+  uploadDataToSelectItem(selector, loader, catDescription);
 })();
