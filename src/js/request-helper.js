@@ -20,7 +20,7 @@ function fetchBreeds() {
   if (rawCachedCatBreeds) {
     const parsedData = JSON.parse(rawCachedCatBreeds);
     console.log("[fetchBreeds] cachedCatBreeds: ", parsedData);
-    return JSON.parse(parsedData);
+    return parsedData;
   }
 
   axios.defaults.headers.common[API_KEY_HEADER] = API_KEY;
@@ -40,7 +40,7 @@ function fetchCatByBreed(breedId) {
   if (rawCachedCatByBreed) {
     const parsedData = JSON.parse(rawCachedCatByBreed);
     console.log("[fetchCatByBreed] cachedCatByBreed: ", parsedData);
-    return JSON.parse(parsedData);
+    return parsedData;
   }
 
   axios.defaults.headers.common[API_KEY_HEADER] = API_KEY;
