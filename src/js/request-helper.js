@@ -4,7 +4,7 @@ const BASE_URL = "https://api.thecatapi.com/v1";
 const BREEDS_API_ENDPOINT = `${BASE_URL}/breeds`;
 const IMAGES_API_ENDPOINT = `${BASE_URL}/images/search?`;
 
-axios.defaults.headers.common["x-api-key"] = secrets.CAT_API_KEY;
+axios.defaults.headers.common["x-api-key"] = process.env.CAT_API_KEY;
 
 function fetchBreeds() {
   return axios.get(`${BREEDS_API_ENDPOINT}`).then((response) => response.data);
