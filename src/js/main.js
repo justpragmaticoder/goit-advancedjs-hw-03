@@ -21,7 +21,7 @@ function selectorUpload(selector, loader, catDescription) {
       });
     })
     .catch(function (error) {
-      handleError();
+      handleError(error);
     })
     .finally(function () {
       toggleHiddenCompletely(selector, true);
@@ -54,7 +54,7 @@ function createMarkup(event, selector, loader, catDescription) {
         </div>`;
     })
     .catch(function (error) {
-      handleError();
+      handleError(error);
     })
     .finally(function () {
       toggleHiddenCompletely(loader, false);
@@ -63,10 +63,10 @@ function createMarkup(event, selector, loader, catDescription) {
     });
 }
 
-function handleError() {
+function handleError(error) {
   iziToast.error({
     title: "🔻 Oops!",
-    message: "Something went wrong!",
+    message: error.message ?? "Something went wrong!",
     position: "topCenter",
   });
 }
