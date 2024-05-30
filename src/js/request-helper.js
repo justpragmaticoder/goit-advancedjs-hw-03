@@ -20,7 +20,7 @@ function fetchBreeds() {
   return axios
     .get(`${BREEDS_API_ENDPOINT}`, {
       headers: {
-        API_KEY_HEADER: API_KEY,
+        API_KEY_HEADER: CAT_API_KEY,
       },
     })
     .then((response) => {
@@ -45,7 +45,7 @@ function fetchCatByBreed(breedId) {
         (IMAGES_API_ENDPOINT,
         {
           headers: {
-            API_KEY_HEADER: API_KEY,
+            API_KEY_HEADER: CAT_API_KEY,
           },
         })
       }breed_ids=${breedId}`
