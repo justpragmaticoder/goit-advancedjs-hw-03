@@ -4,10 +4,6 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import { fetchBreeds, fetchCatByBreed } from "./request-helper.js";
 
-const BREEDS_CACHE_KEY = 'cat_breeds';
-
-let simpleCache = {};
-
 function toggleHiddenCompletely(element, isVisible) {
   element.classList.toggle("is-hidden-compeletely", !isVisible);
 }
@@ -23,8 +19,6 @@ function selectorUpload(selector, loader, catDescription) {
       new SlimSelect({
         select: selector,
       });
-
-      localStorage.setItem(BREEDS_CACHE_KEY, breeds);
     })
     .catch(function (error) {
       handleError(error);
