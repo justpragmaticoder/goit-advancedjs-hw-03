@@ -22,7 +22,7 @@ function fetchBreeds() {
 
   console.log("Does CAT_API_KEY exist: ", !!CAT_API_KEY);
 
-  const apiKey = CAT_API_KEY ?? DEFAULT_CAT_API_KEY;
+  const apiKey = CAT_API_KEY || DEFAULT_CAT_API_KEY;
 
   return axios
     .get(`${BREEDS_API_ENDPOINT}`, {
