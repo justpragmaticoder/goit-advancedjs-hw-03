@@ -14,6 +14,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm ci
+          echo "VITE_CAT_API_KEY=${{ secrets.CAT_API_KEY }}" > .env
           npm run build
         env:
           CAT_API_KEY: ${{ secrets.CAT_API_KEY }}
