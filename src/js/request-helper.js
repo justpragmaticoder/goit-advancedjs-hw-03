@@ -17,6 +17,8 @@ function fetchBreeds() {
     return JSON.parse(parsedData);
   }
 
+  console.log('Does CAT_API_KEY exist: ', !!CAT_API_KEY);
+
   return axios
     .get(`${BREEDS_API_ENDPOINT}`, {
       headers: {
@@ -38,6 +40,8 @@ function fetchCatByBreed(breedId) {
     console.log("[fetchCatByBreed] cachedCatByBreed: ", parsedData);
     return JSON.parse(parsedData);
   }
+
+  console.log('Does CAT_API_KEY exist: ', !!CAT_API_KEY);
 
   return axios
     .get(`${IMAGES_API_ENDPOINT}breed_ids=${breedId}`, {
